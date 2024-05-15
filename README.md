@@ -1,7 +1,12 @@
 # Data Analysis Covid19 Impact Taxi Project Research
 The research date project of the impact of the Covid-19 epidemic on the trips of the New York City Taxi and Limousine Service (TLC) for the period 2015-2023.
 
-## Data 
+## Project Scope and Data
+The project's scope encompasses analyzing the effects of the Covid-19 epidemic on taxi trips within the New York City Taxi and Limousine Service (TLC) from 2015 to 2023. The dataset selected for analysis was chosen based on its accuracy and comprehensive data content. It includes data for each month throughout the specified period.
+
+## Dataset Details
+- Number of Data Files Processed: 324
+- Total Data: ??? Gb
 
 ### Data dictionary
 
