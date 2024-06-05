@@ -5,14 +5,14 @@ The research date project of the impact of the Covid-19 epidemic on the trips of
 The project's scope encompasses analyzing the effects of the Covid-19 epidemic on taxi trips within the New York City Taxi and Limousine Service (TLC) from 2015 to 2023. The dataset selected for analysis was chosen based on its accuracy and comprehensive data content. It includes data for each month throughout the specified period.
 
 ## Dataset Details
-- Number of Data Files Processed: 324
-- Total Data: ??? Gb
+- Number of Data Files Processed: 328
+- Total Data: 124 Gb
 
-### Data dictionary
+### Data Taxi dictionary
 
 [Taxi Trip Records Data](https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page)
 
-### Describe data
+### Describe Taxi data
 Yellow and green taxi trip records include fields capturing pick-up and drop-off dates/times, pick-up and drop-off locations, trip distances, itemized fares, rate types, payment types, and driver-reported passenger counts. The data used in the attached datasets were collected and provided to the NYC Taxi and Limousine Commission (TLC) by technology providers authorized under the Taxicab & Livery Passenger Enhancement Programs (TPEP/LPEP). The trip data was not created by the TLC, and TLC makes no representations as to the accuracy of these data.
 
 For-Hire Vehicle (“FHV”) trip records include fields capturing the dispatching base license number and the pick-up date, time, and taxi zone location ID (shape file below). These records are generated from the FHV Trip Record submissions made by bases. Note: The TLC publishes base trip record data as submitted by the bases, and we cannot guarantee or confirm their accuracy or completeness. Therefore, this may not represent the total amount of trips dispatched by all TLC-licensed bases. The TLC performs routine reviews of the records and takes enforcement actions when necessary to ensure, to the extent possible, complete and accurate information.
@@ -86,4 +86,13 @@ PUlocationID              | TLC Taxi Zone in which the trip began.
 For more detailed information, refer to the [NYC Taxi Trip Records For-Hire Vehicle (FHV) Data Dictionary PDF.](https://www.nyc.gov/assets/tlc/downloads/pdf/data_dictionary_trip_records_fhv.pdf)
 
 
+### Data Covid-19 dictionary
+
+[Daily Hospitalization Summary](https://coronavirus.health.ny.gov/daily-hospitalization-summary)
+[COVID-19 Data in New York](https://coronavirus.health.ny.gov/covid-19-data-new-york)
+[USAFacts Data](https://usafacts.org/visualizations/coronavirus-covid-19-spread-map/state/new-york/)
+[COVID-19: Data](https://www.nyc.gov/site/doh/covid/covid-19-data.page)
+
 ### Convector
+The files have been converted by **parquet_to_csv_convector.py** into .csv files for more convenient use and data processing. 
+To convert four files that could not be converted due to an error in the conversion stage due to the presence of data corruption, separate **parquet_to_csv_convector_error_protection.py** convector was written, which reads the data line by line into the data frame (DF) exceptions detected errors in the records. Once this operation is complete, the file is saved to .csv format with name 'output.csv'. The total processing time of one file varies within a radius of 35-45 minutes, depending on the hardware capabilities. The list of files converted this way: fhv_tripdata_2017-06, fhv_tripdata_2018-05, fhv_tripdata_2018-06, fhv_tripdata_2018-08.
