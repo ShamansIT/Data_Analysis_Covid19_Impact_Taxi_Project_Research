@@ -20,7 +20,7 @@ For-Hire Vehicle (“FHV”) trip records include fields capturing the dispatchi
 ### Yellow NYC Taxi Trip Records Dictionary
 This document provides a data dictionary for the New York City Taxi Trip Records dataset, specifically focusing on the yellow taxi trips. The dataset is made available by the NYC Taxi and Limousine Commission (TLC).
 
-**Data Fields**
+### Data Yellow NYC Taxi Trip Records Fields
 Field Name              | Description                                                                                           
 ------------------------|-------------------------------------------------------------------------------------------------------
 VendorID                | A code indicating the TPEP provider that provided the record. 1= Creative Mobile Technologies, LLC; 2= VeriFone Inc.
@@ -48,7 +48,7 @@ For more detailed information, refer to the [NYC Taxi Trip Records Yellow Data D
 ### Green NYC Taxi Trip Records Dictionary
 This document provides a data dictionary for the New York City Taxi Trip Records dataset, specifically focusing on the green taxi trips. The dataset is made available by the NYC Taxi and Limousine Commission (TLC).
 
-**Data Fields**
+### Data Green NYC Taxi Trip Records Fields
 Field Name               | Description                                                                                          
 ------------------------|-----------------------------------------------------------------------------------------------------
 VendorID                 | A code indicating the LPEP provider that provided the record. 1= Creative Mobile Technologies, LLC; 2= VeriFone Inc.
@@ -75,7 +75,7 @@ For more detailed information, refer to the [NYC Taxi Trip Records Green Data Di
 ### FHV Trip Records
 This document provides a data dictionary for the New York City Taxi Trip Records dataset, specifically focusing on the For-Hire Vehicle (FHV) trips. The dataset is made available by the NYC Taxi and Limousine Commission (TLC).
 
-**Data Fields**
+### Data FHV Trip Records Fields
 Field Name                | Description                                                                                          
 --------------------------|-------------------------------------------------------------------------------------------------------
 dispatching_base_num      | TLC base license number of the base that dispatched the trip.
@@ -86,13 +86,84 @@ PUlocationID              | TLC Taxi Zone in which the trip began.
 For more detailed information, refer to the [NYC Taxi Trip Records For-Hire Vehicle (FHV) Data Dictionary PDF.](https://www.nyc.gov/assets/tlc/downloads/pdf/data_dictionary_trip_records_fhv.pdf)
 
 
-### Data Covid-19 dictionary
+### Convector Taxi data
+The files from format **.parquet** have been converted by **parquet_to_csv_convector.py** into **.csv** files for more convenient use and data processing. 
+To convert four files that could not be converted due to an error in the conversion stage due to the presence of data corruption, separate **parquet_to_csv_convector_error_protection.py** convector was written, which reads the data line by line into the data frame (DF) exceptions detected errors in the records. Once this operation is complete, the file is saved to **.csv** format with name **output.csv**. The total processing time of one file varies within 35-45 minutes, depending on the hardware capabilities. The list of files converted this way: fhv_tripdata_2017-06, fhv_tripdata_2018-05, fhv_tripdata_2018-06, fhv_tripdata_2018-08.
 
-[Daily Hospitalization Summary](https://coronavirus.health.ny.gov/daily-hospitalization-summary)
-[COVID-19 Data in New York](https://coronavirus.health.ny.gov/covid-19-data-new-york)
-[USAFacts Data](https://usafacts.org/visualizations/coronavirus-covid-19-spread-map/state/new-york/)
-[COVID-19: Data](https://www.nyc.gov/site/doh/covid/covid-19-data.page)
 
-### Convector
-The files have been converted by **parquet_to_csv_convector.py** into .csv files for more convenient use and data processing. 
-To convert four files that could not be converted due to an error in the conversion stage due to the presence of data corruption, separate **parquet_to_csv_convector_error_protection.py** convector was written, which reads the data line by line into the data frame (DF) exceptions detected errors in the records. Once this operation is complete, the file is saved to .csv format with name 'output.csv'. The total processing time of one file varies within a radius of 35-45 minutes, depending on the hardware capabilities. The list of files converted this way: fhv_tripdata_2017-06, fhv_tripdata_2018-05, fhv_tripdata_2018-06, fhv_tripdata_2018-08.
+### COVID-19 Health Data dictionary
+
+[NYC Open Data: COVID-19 Daily Counts of Cases, Hospitalizations, and Deaths](https://data.cityofnewyork.us/Health/COVID-19-Daily-Counts-of-Cases-Hospitalizations-an/rc75-m7u3/about_data)
+
+### Describe COVID-19 Health Data
+Daily count of NYC residents who tested positive for SARS-CoV-2, who were hospitalized with COVID-19, and deaths among COVID-19 patients.
+Note that this dataset currently pulls from **https://raw.githubusercontent.com/nychealth/coronavirus-data/master/trends/data-by-day.csv** on a daily basis.
+
+| **Dataset Information** |                               |
+|-------------------------|-------------------------------|
+| **Agency**              | Department of Health and Mental Hygiene (DOHMH) |
+| **Update Frequency**    | Daily                         |
+| **Automation**          | Yes                           |
+| **Date Made Public**    | 5/19/2020                     |
+
+
+
+### Data COVID-19 Health
+
+| **Column Name**                 | **Description**                                                                                          | **Type**     |
+|---------------------------------|----------------------------------------------------------------------------------------------------------|--------------|
+| **date_of_interest**              | Date of COVID-19 diagnosis (i.e., date of specimen collection), hospital admission, or death             | Date & Time  |
+| **CASE_COUNT**                    | Count of patients tested who were confirmed to be COVID-19 cases on **date_of_interest**                    | Number       |
+| **PROBABLE_CASE_COUNT**           | Count of probable COVID-19 cases on **date_of_interest**                                                   | Number       |
+| **HOSPITALIZED_COUNT**            | Count of COVID-19 patients who were hospitalized on **date_of_interest**                                   | Number       |
+| **DEATH_COUNT**                   | Count of deaths occurring among confirmed COVID-19 cases on **date_of_interest**                           | Number       |
+| **CASE_COUNT_7DAY_AVG**           | 7-day average of confirmed COVID-19 cases                                                                | Number       |
+| **ALL_CASE_COUNT_7DAY_AVG**       | 7-day average of all COVID-19 cases (confirmed and probable)                                             | Number       |
+| **HOSP_COUNT_7DAY_AVG**           | 7-day average of hospitalized COVID-19 cases                                                             | Number       |
+| **DEATH_COUNT_7DAY_AVG**          | 7-day average of deaths among confirmed COVID-19 cases                                                   | Number       |
+| **BX_CASE_COUNT**                 | Count of confirmed COVID-19 cases in the Bronx                                                           | Number       |
+| **BX_PROBABLE_CASE_COUNT**        | Count of probable COVID-19 cases in the Bronx                                                            | Number       |
+| **BX_HOSPITALIZED_COUNT**         | Count of hospitalized COVID-19 cases in the Bronx                                                        | Number       |
+| **BX_DEATH_COUNT**                | Count of deaths among confirmed COVID-19 cases in the Bronx                                              | Number       |
+| **BX_CASE_COUNT_7DAY_AVG**        | 7-day average of confirmed COVID-19 cases in the Bronx                                                   | Number       |
+| **BX_PROBABLE_CASE_COUNT_7DAY_AVG**| 7-day average of probable COVID-19 cases in the Bronx                                                    | Number       |
+| **BX_ALL_CASE_COUNT_7DAY_AVG**    | 7-day average of all COVID-19 cases in the Bronx (confirmed and probable)                                 | Number       |
+| **BX_HOSPITALIZED_COUNT_7DAY_AVG**| 7-day average of hospitalized COVID-19 cases in the Bronx                                                | Number       |
+| **BX_DEATH_COUNT_7DAY_AVG**       | 7-day average of deaths among confirmed COVID-19 cases in the Bronx                                      | Number       |
+| **BK_CASE_COUNT**                 | Count of confirmed COVID-19 cases in Brooklyn                                                            | Number       |
+| **BK_PROBABLE_CASE_COUNT**        | Count of probable COVID-19 cases in Brooklyn                                                             | Number       |
+| **BK_HOSPITALIZED_COUNT**         | Count of hospitalized COVID-19 cases in Brooklyn                                                         | Number       |
+| **BK_DEATH_COUNT**                | Count of deaths among confirmed COVID-19 cases in Brooklyn                                               | Number       |
+| **BK_CASE_COUNT_7DAY_AVG**        | 7-day average of confirmed COVID-19 cases in Brooklyn                                                    | Number       |
+| **BK_PROBABLE_CASE_COUNT_7DAY_AVG**| 7-day average of probable COVID-19 cases in Brooklyn                                                     | Number       |
+| **BK_ALL_CASE_COUNT_7DAY_AVG**    | 7-day average of all COVID-19 cases in Brooklyn (confirmed and probable)                                 | Number       |
+| **BK_HOSPITALIZED_COUNT_7DAY_AVG**| 7-day average of hospitalized COVID-19 cases in Brooklyn                                                 | Number       |
+| **BK_DEATH_COUNT_7DAY_AVG**       | 7-day average of deaths among confirmed COVID-19 cases in Brooklyn                                       | Number       |
+| **MN_CASE_COUNT**                 | Count of confirmed COVID-19 cases in Manhattan                                                           | Number       |
+| **MN_PROBABLE_CASE_COUNT**        | Count of probable COVID-19 cases in Manhattan                                                            | Number       |
+| **MN_HOSPITALIZED_COUNT**         | Count of hospitalized COVID-19 cases in Manhattan                                                        | Number       |
+| **MN_DEATH_COUNT**                | Count of deaths among confirmed COVID-19 cases in Manhattan                                              | Number       |
+| **MN_CASE_COUNT_7DAY_AVG**        | 7-day average of confirmed COVID-19 cases in Manhattan                                                   | Number       |
+| **MN_PROBABLE_CASE_COUNT_7DAY_AVG**| 7-day average of probable COVID-19 cases in Manhattan                                                    | Number       |
+| **MN_ALL_CASE_COUNT_7DAY_AVG**    | 7-day average of all COVID-19 cases in Manhattan (confirmed and probable)                                | Number       |
+| **MN_HOSPITALIZED_COUNT_7DAY_AVG**| 7-day average of hospitalized COVID-19 cases in Manhattan                                                | Number       |
+| **MN_DEATH_COUNT_7DAY_AVG**       | 7-day average of deaths among confirmed COVID-19 cases in Manhattan                                      | Number       |
+| **QN_CASE_COUNT**                 | Count of confirmed COVID-19 cases in Queens                                                              | Number       |
+| **QN_PROBABLE_CASE_COUNT**        | Count of probable COVID-19 cases in Queens                                                               | Number       |
+| **QN_HOSPITALIZED_COUNT**         | Count of hospitalized COVID-19 cases in Queens                                                           | Number       |
+| **QN_DEATH_COUNT**                | Count of deaths among confirmed COVID-19 cases in Queens                                                 | Number       |
+| **QN_CASE_COUNT_7DAY_AVG**        | 7-day average of confirmed COVID-19 cases in Queens                                                      | Number       |
+| **QN_PROBABLE_CASE_COUNT_7DAY_AVG**| 7-day average of probable COVID-19 cases in Queens                                                       | Number       |
+| **QN_ALL_CASE_COUNT_7DAY_AVG**    | 7-day average of all COVID-19 cases in Queens (confirmed and probable)                                   | Number       |
+| **QN_HOSPITALIZED_COUNT_7DAY_AVG**| 7-day average of hospitalized COVID-19 cases in Queens                                                   | Number       |
+| **QN_DEATH_COUNT_7DAY_AVG**       | 7-day average of deaths among confirmed COVID-19 cases in Queens                                         | Number       |
+| **SI_CASE_COUNT**                 | Count of confirmed COVID-19 cases in Staten Island                                                       | Number       |
+| **SI_PROBABLE_CASE_COUNT**        | Count of probable COVID-19 cases in Staten Island                                                        | Number       |
+| **SI_HOSPITALIZED_COUNT**         | Count of hospitalized COVID-19 cases in Staten Island                                                    | Number       |
+| **SI_DEATH_COUNT**                | Count of deaths among confirmed COVID-19 cases in Staten Island                                          | Number       |
+| **SI_PROBABLE_CASE_COUNT_7DAY_AVG**| 7-day average of probable COVID-19 cases in Staten Island                                                | Number       |
+| **SI_CASE_COUNT_7DAY_AVG**        | 7-day average of confirmed COVID-19 cases in Staten Island                                               | Number       |
+| **SI_ALL_CASE_COUNT_7DAY_AVG**    | 7-day average of all COVID-19 cases in Staten Island (confirmed and probable)                            | Number       |
+| **SI_HOSPITALIZED_COUNT_7DAY_AVG**| 7-day average of hospitalized COVID-19 cases in Staten Island                                            | Number       |
+| **SI_DEATH_COUNT_7DAY_AVG**       | 7-day average of deaths among confirmed COVID-19 cases in Staten Island                                  | Number       |
+| **INCOMPLETE**                    | Count of incomplete COVID-19 cases                                                                        | Number       |
