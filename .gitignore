@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 
 path_manager.py
+note.py
 
 # C extensions
 *.so
